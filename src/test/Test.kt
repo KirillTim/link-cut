@@ -44,4 +44,25 @@ class LCTest {
     check(!isConnected(v[0], v[4]))
     check(!isConnected(v[3], v[0]))
   }
+
+  @Test
+  fun test3() {
+    val v = Array(10) { Node() }
+    link(v[0], v[1])
+    link(v[0], v[2])
+    link(v[2], v[1]) //do nothing
+    yes(v, 0, 1)
+    yes(v, 2, 0)
+    cut(v[0], v[2])
+    no(v, 1, 2)
+    no(v, 2, 0)
+  }
+
+  private fun yes(v: Array<Node>, first: Int, second: Int) {
+    check(isConnected(v[first], v[second]))
+  }
+
+  private fun no(v: Array<Node>, first: Int, second: Int) {
+    check(!isConnected(v[first], v[second]))
+  }
 }
